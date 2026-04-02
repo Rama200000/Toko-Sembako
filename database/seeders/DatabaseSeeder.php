@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Product::upsert([
+        $products = collect([
             [
                 'name' => 'Beras Ramos Premium 5kg',
                 'category' => 'Beras',
@@ -72,6 +72,13 @@ class DatabaseSeeder extends Seeder
                 'price' => 19800,
                 'stock' => 35,
             ],
-        ], ['name'], ['category', 'unit', 'price', 'stock']);
+        ]);
+
+        $products->each(function (array $product): void {
+            Product::query()->updateOrCreate(
+                ['name' => $product['name']],
+                $product
+            );
+        });
     }
 }

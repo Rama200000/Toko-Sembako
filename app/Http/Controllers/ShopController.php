@@ -15,7 +15,9 @@ class ShopController extends Controller
     {
         return Product::query()
             ->latest()
-            ->get();
+            ->get()
+            ->unique('name')
+            ->values();
     }
 
     public function home()

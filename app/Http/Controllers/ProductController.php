@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -19,7 +20,7 @@ class ProductController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'name' => ['required', 'string', 'max:150'],
+            'name' => ['required', 'string', 'max:150', 'unique:products,name'],
             'category' => ['required', 'string', 'max:100'],
             'unit' => ['required', 'string', 'max:20'],
             'price' => ['required', 'integer', 'min:0'],
@@ -39,7 +40,7 @@ class ProductController extends Controller
     public function update(Request $request, Product $product): RedirectResponse
     {
         $validated = $request->validate([
-            'name' => ['required', 'string', 'max:150'],
+            'name' => ['required', 'string', 'max:150', Rule::unique('products', 'name')->ignore($product->id)],
             'category' => ['required', 'string', 'max:100'],
             'unit' => ['required', 'string', 'max:20'],
             'price' => ['required', 'integer', 'min:0'],
