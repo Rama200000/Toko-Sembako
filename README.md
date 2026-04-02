@@ -21,46 +21,39 @@ Aplikasi kasir + toko online sederhana berbasis Laravel.
 
 ## Setup Lokal
 
-1. Clone repo
-
-```bash
-git clone https://github.com/Rama200000/Toko-Sembako.git
-cd Toko-Sembako
-```
-
-2. Install dependency
+1. Install dependency
 
 ```bash
 composer install
 npm install
 ```
 
-3. Buat env dan app key
+2. Buat env dan app key
 
 ```bash
 cp .env.example .env
 php artisan key:generate
 ```
 
-4. Atur database di `.env`, lalu migrate
+3. Atur database di `.env`, lalu migrate
 
 ```bash
 php artisan migrate
 ```
 
-5. Seed data awal produk
+4. Seed data awal produk
 
 ```bash
 php artisan db:seed
 ```
 
-6. Link storage agar foto produk tampil
+5. Link storage agar foto produk tampil
 
 ```bash
 php artisan storage:link
 ```
 
-7. Jalankan aplikasi
+6. Jalankan aplikasi
 
 ```bash
 php artisan serve
